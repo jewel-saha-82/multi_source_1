@@ -10,11 +10,11 @@ phases:
       commands:
          - echo $CODEBUILD_INITIATOR
          - echo $CODEBUILD_SOURCE_REPO_URL
-         - echo $CODEBUILD_SRC_DIR
+         - echo First Source Folder - $CODEBUILD_SRC_DIR
          - cd $CODEBUILD_SRC_DIR
          - touch file2
          - ls
-         - echo $CODEBUILD_SRC_DIR_source2
+         - echo Second Source Folder (name should match with source2 as it was given in codebuild) - $CODEBUILD_SRC_DIR_source2
          - cd $CODEBUILD_SRC_DIR_source2
          - touch file2
          - ls
@@ -24,7 +24,7 @@ artifacts:
       - file1
       - file2
    secondary-artifacts:
-      artifact2:
+      artifact2: # name should match with artifact2 as it was given in codebuild
          base-directory: $CODEBUILD_SRC_DIR_source2
          files:
             - file2
