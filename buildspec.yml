@@ -11,15 +11,21 @@ phases:
          - echo $CODEBUILD_INITIATOR
          - echo $CODEBUILD_SOURCE_REPO_URL
          - echo $CODEBUILD_SRC_DIR
+         - cd $CODEBUILD_SRC_DIR
+         - touch file2
          - ls
          - echo $CODEBUILD_SRC_DIR_source2
+         - cd $CODEBUILD_SRC_DIR_source2
+         - touch file2
          - ls
          
 artifacts:
    files:
       - file1
+      - file2
    secondary-artifacts:
       artifact2:
          base-directory: $CODEBUILD_SRC_DIR_source2
          files:
-            - folder/file3
+            - file2
+            - $FOLDER/file3
